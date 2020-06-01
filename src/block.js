@@ -61,12 +61,16 @@ class Block {
      *     or Reject with an error.
      */
     getBData() {
+        return new Promise((resolve, reject) => {
+            if (!this.previousBlockHash) resolve(null);
+            const decodedData = JSON.parse( hex2ascii(this.body) );
+            resolve(decodedData);
+        });
         // Getting the encoded data saved in the Block
         // Decoding the data to retrieve the JSON representation of the object
         // Parse the data to an object to be retrieve.
 
         // Resolve with the data if the object isn't the Genesis block
-
     }
 
 }
